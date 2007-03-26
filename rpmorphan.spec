@@ -7,7 +7,7 @@ Name:		rpmorphan
 Version:	0.8
 Release:	0.1
 License:	GPL v2
-Group:		Applications
+Group:		Applications/System
 Source0:	http://dl.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
 URL:		http://rpmorphan.sourceforge.net
 BuildArch:	noarch
@@ -56,17 +56,12 @@ install {rpmorphan,rpmusage}.pl $RPM_BUILD_ROOT%{_bindir}
 install {rpmorphan,rpmusage}.1 $RPM_BUILD_ROOT%{_mandir}/man1
 install keep $RPM_BUILD_ROOT/var/lib/%{name}
 
-mv -f {Authors,AUTHORS}
-mv -f {Changelog,ChangeLog}
-mv -f {Readme,README}
-mv -f {Todo,TODO}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README TODO
+%doc Authors Changelog NEWS Readme Todo rpmorphan.lsm
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/rpmorphan.1*
 %{_mandir}/man1/rpmusage.1*
