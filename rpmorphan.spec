@@ -1,15 +1,16 @@
 # TODO:
 # - gui doesn't work
-Summary:	rpmorphan list the orphaned rpm packages
+Summary:	rpmorphan - list the orphaned rpm packages
 Summary(fr.UTF-8):	rpmorphan liste les packages rpm orphelins
-Summary(pl.UTF-8):	rpmorphan wyświetla listę osieroconych pakietów
+Summary(pl.UTF-8):	rpmorphan - wyświetlanie listy osieroconych pakietów
 Name:		rpmorphan
 Version:	0.8
 Release:	0.1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
-URL:		http://rpmorphan.sourceforge.net
+# Source0-md5:	0a810de4b1c3f559b5a7de31731ec8f1
+URL:		http://rpmorphan.sourceforge.net/
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -36,11 +37,11 @@ exemple:
 %description -l pl.UTF-8
 rpmorphan znajduje "osierocone" pakiety w systemie. Określa które
 pakiety nie są zależnościami innych pakietów i wyświetla ich listę. W
-zamyśle ma to być klon deborphan tylko, że dla pakietów rpm.
+zamyśle ma to być klon deborphana dla pakietów rpm.
 
-Pomoże Ci on usunąć nie używane pakiety, np.:
+Pomaga on usuwać nie używane pakiety, np.:
 - po uaktualnieniu dystrybucji,
-- kiedy chcesz usunąć pakiety po jakiś testach.
+- kiedy chcemy usunąć pakiety po jakichś testach.
 
 %prep
 %setup -q
@@ -61,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Authors Changelog NEWS Readme Todo rpmorphan.lsm
+%doc Authors Changelog NEWS Readme Todo
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/rpmorphan.1*
 %{_mandir}/man1/rpmusage.1*
