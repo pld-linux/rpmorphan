@@ -1,15 +1,17 @@
 # TODO:
-# - gui doesn't work
+# - need changes to support gui, tk gui and curses gui
+#   (add R and something more?)
+# - gui and tk gui get SIGSEGV after quit
 Summary:	rpmorphan - list the orphaned rpm packages
 Summary(fr.UTF-8):	rpmorphan liste les packages rpm orphelins
 Summary(pl.UTF-8):	rpmorphan - wyświetlanie listy osieroconych pakietów
 Name:		rpmorphan
-Version:	0.8
+Version:	0.9
 Release:	0.1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
-# Source0-md5:	0a810de4b1c3f559b5a7de31731ec8f1
+# Source0-md5:	ff689bc1a93ec6c15d2cf2b91ec2ca76
 URL:		http://rpmorphan.sourceforge.net/
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -48,13 +50,16 @@ Pomaga on usuwać nie używane pakiety, np.:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_bindir},/var/lib/%{name}}
+install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_bindir},/var/lib/%{name},%{_sysconfdir}}
 
 ln -sf rpmorphan.pl $RPM_BUILD_ROOT%{_bindir}/rpmorphan
 ln -sf rpmusage.pl $RPM_BUILD_ROOT%{_bindir}/rpmusage
 
 install {rpmorphan,rpmusage}.pl $RPM_BUILD_ROOT%{_bindir}
 install {rpmorphan,rpmusage}.1 $RPM_BUILD_ROOT%{_mandir}/man1
+
+install rpmorphanrc.sample $RPM_BUILD_ROOT%{_sysconfdir}/rpmorphanrc
+
 install keep $RPM_BUILD_ROOT/var/lib/%{name}
 
 %clean
@@ -64,6 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc Authors Changelog NEWS Readme Todo
 %attr(755,root,root) %{_bindir}/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/rpmorphanrc
 %{_mandir}/man1/rpmorphan.1*
 %{_mandir}/man1/rpmusage.1*
 %dir /var/lib/%{name}
