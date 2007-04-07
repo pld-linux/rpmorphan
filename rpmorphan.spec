@@ -22,7 +22,7 @@ which packages have no other packages depending on their installation,
 and shows you a list of these packages. It intends to be clone of
 deborphan debian tools for rpm packages.
 
-It will try to help you to remove unused packages, for exemple:
+It will try to help you to remove unused packages, for example:
 - after a distribution upgrade,
 - when you want to suppress packages after some tests.
 
