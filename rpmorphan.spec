@@ -1,15 +1,16 @@
 # TODO:
-# - tk gui (options: -gui or -tk) get SIGSEGV after quit
+# - tk gui (option -gui or -tk) get SIGSEGV after quit
+# - consider move %{_bindir}/rpmorphan-lib.pl to other place
 Summary:	rpmorphan - list the orphaned rpm packages
 Summary(fr.UTF-8):	rpmorphan liste les packages rpm orphelins
 Summary(pl.UTF-8):	rpmorphan - wyświetlanie listy osieroconych pakietów
 Name:		rpmorphan
-Version:	1.0
+Version:	1.1
 Release:	0.2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
-# Source0-md5:	560f78f6efe95a864072de6829bb8e00
+# Source0-md5:	1b9e2e9b465218965d4761ef9fb7c9e2
 URL:		http://rpmorphan.sourceforge.net/
 Suggests:	perl-Curses-UI
 Suggests:	perl-Tk
@@ -55,7 +56,7 @@ install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_bindir},/var/lib/%{name},%{_syscon
 ln -sf rpmorphan.pl $RPM_BUILD_ROOT%{_bindir}/rpmorphan
 ln -sf rpmusage.pl $RPM_BUILD_ROOT%{_bindir}/rpmusage
 
-install {rpmorphan,rpmusage}.pl $RPM_BUILD_ROOT%{_bindir}
+install {rpmorphan,rpmorphan-lib,rpmusage}.pl $RPM_BUILD_ROOT%{_bindir}
 install {rpmorphan,rpmusage}.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 install rpmorphanrc.sample $RPM_BUILD_ROOT%{_sysconfdir}/rpmorphanrc
