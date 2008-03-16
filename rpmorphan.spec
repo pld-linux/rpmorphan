@@ -12,6 +12,7 @@ Group:		Applications/System
 Source0:	http://dl.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
 # Source0-md5:	1b9e2e9b465218965d4761ef9fb7c9e2
 URL:		http://rpmorphan.sourceforge.net/
+Requires:	perl-modules
 Suggests:	perl-Curses-UI
 Suggests:	perl-Tk
 BuildArch:	noarch
