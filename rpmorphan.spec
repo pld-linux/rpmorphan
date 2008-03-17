@@ -1,6 +1,7 @@
 # TODO:
 # - tk gui (option -gui or -tk) get SIGSEGV after quit
 # - consider move %{_bindir}/rpmorphan-lib.pl to other place
+%include	/usr/lib/rpm/macros.perl
 Summary:	rpmorphan - list the orphaned rpm packages
 Summary(fr.UTF-8):	rpmorphan liste les packages rpm orphelins
 Summary(pl.UTF-8):	rpmorphan - wyświetlanie listy osieroconych pakietów
@@ -12,7 +13,7 @@ Group:		Applications/System
 Source0:	http://dl.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
 # Source0-md5:	1b9e2e9b465218965d4761ef9fb7c9e2
 URL:		http://rpmorphan.sourceforge.net/
-Requires:	perl-modules
+BuildRequires:	rpm-perlprov
 Suggests:	perl-Curses-UI
 Suggests:	perl-Tk
 BuildArch:	noarch
