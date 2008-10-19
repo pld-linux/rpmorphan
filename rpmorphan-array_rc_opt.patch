@@ -1,0 +1,15 @@
+--- rpmorphan-1.2/rpmorphan-lib.pl.orig	2008-10-18 23:04:57.476685358 +0200
++++ rpmorphan-1.2/rpmorphan-lib.pl	2008-10-18 23:05:06.976032491 +0200
+@@ -376,7 +376,11 @@
+ 		my ( $key, $value ) = split /\s*=\s*/, $_, 2;
+ 		if ( defined $key ) {
+ 			if ( exists $rh_list->{$key} ) {
+-				${ $rh_list->{$key} } = $value;
++				if (ref($rh_list->{$key}) eq 'ARRAY') {
++					@{ $rh_list->{$key} } = get_from_command_line($value);
++				} else {
++					${ $rh_list->{$key} } = $value;
++				}
+ 
+ 				# special case : verbose will modify immediately behavior
+ 				init_debug($value) if ( $key eq 'verbose' );
