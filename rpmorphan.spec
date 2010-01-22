@@ -14,12 +14,12 @@ Summary:	rpmorphan - list the orphaned rpm packages
 Summary(fr.UTF-8):	rpmorphan liste les packages rpm orphelins
 Summary(pl.UTF-8):	rpmorphan - wyświetlanie listy osieroconych pakietów
 Name:		rpmorphan
-Version:	1.5
+Version:	1.6
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
-# Source0-md5:	bd55e6e5ff7a7b26096264aa7cd93004
+# Source0-md5:	63dcedf779902513f0c15f8bf1c04358
 URL:		http://rpmorphan.sourceforge.net/
 BuildRequires:	rpm-perlprov
 Suggests:	perl-Curses-UI
