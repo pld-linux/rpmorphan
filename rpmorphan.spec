@@ -15,7 +15,7 @@ Summary(fr.UTF-8):	rpmorphan liste les packages rpm orphelins
 Summary(pl.UTF-8):	rpmorphan - wyświetlanie listy osieroconych pakietów
 Name:		rpmorphan
 Version:	1.8
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
@@ -77,21 +77,12 @@ Dostarcza dodatkowo narzędzia:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_bindir},/var/lib/%{name},%{_sysconfdir},/var/log/}
 
-install rpmdep.pl $RPM_BUILD_ROOT%{_bindir}/rpmdep
-install rpmduplicates.pl $RPM_BUILD_ROOT%{_bindir}/rpmduplicates
-install rpmorphan.pl $RPM_BUILD_ROOT%{_bindir}/rpmorphan
-install rpmusage.pl $RPM_BUILD_ROOT%{_bindir}/rpmusage
-
-install rpmorphan-lib.pl $RPM_BUILD_ROOT%{_bindir}
-
-install {rpmdep,rpmduplicates,rpmorphan,rpmusage}.1 $RPM_BUILD_ROOT%{_mandir}/man1
+%{__make} install \
+	TARGET_LOCALE=$RPM_BUILD_ROOT%{_libdir}/rpmorphan/locale \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install rpmorphanrc.sample $RPM_BUILD_ROOT%{_sysconfdir}/rpmorphanrc
-
-install keep $RPM_BUILD_ROOT/var/lib/%{name}
-
 touch $RPM_BUILD_ROOT/var/log/%{name}.log
 
 %clean
@@ -100,8 +91,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Authors Changelog NEWS Readme Todo
-%attr(755,root,root) %{_bindir}/*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/rpmorphanrc
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/rpmorphan
+%attr(755,root,root) %{_bindir}/*
+%{_libdir}/rpmorphan/locale/en/rpmorphan_trans.pl
+%lang(fr) %{_libdir}/rpmorphan/locale/fr_FR/rpmorphan_trans.pl
 %{_mandir}/man1/rpmdep.1*
 %{_mandir}/man1/rpmduplicates.1*
 %{_mandir}/man1/rpmorphan.1*
