@@ -15,11 +15,12 @@ Summary(fr.UTF-8):	rpmorphan liste les packages rpm orphelins
 Summary(pl.UTF-8):	rpmorphan - wyświetlanie listy osieroconych pakietów
 Name:		rpmorphan
 Version:	1.8
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
 # Source0-md5:	4b237a8db197198b0fc8bc59981b6334
+Patch0:		%{name}-noarch.patch
 URL:		http://rpmorphan.sourceforge.net/
 BuildRequires:	rpm-perlprov
 Suggests:	perl-Curses-UI
@@ -74,12 +75,12 @@ Dostarcza dodatkowo narzędzia:
 
 %prep
 %setup -q
+%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	TARGET_LOCALE=$RPM_BUILD_ROOT%{_libdir}/rpmorphan/locale \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install rpmorphanrc.sample $RPM_BUILD_ROOT%{_sysconfdir}/rpmorphanrc
@@ -94,8 +95,10 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/rpmorphanrc
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/rpmorphan
 %attr(755,root,root) %{_bindir}/*
-%{_libdir}/rpmorphan/locale/en/rpmorphan_trans.pl
-%lang(fr) %{_libdir}/rpmorphan/locale/fr_FR/rpmorphan_trans.pl
+%dir %{_datadir}/rpmorphan
+%dir %{_datadir}/rpmorphan/locale
+%{_datadir}/rpmorphan/locale/en
+%lang(fr) %{_datadir}/rpmorphan/locale/fr_FR
 %{_mandir}/man1/rpmdep.1*
 %{_mandir}/man1/rpmduplicates.1*
 %{_mandir}/man1/rpmorphan.1*
