@@ -14,12 +14,12 @@ Summary:	rpmorphan - list the orphaned rpm packages
 Summary(fr.UTF-8):	rpmorphan liste les packages rpm orphelins
 Summary(pl.UTF-8):	rpmorphan - wyświetlanie listy osieroconych pakietów
 Name:		rpmorphan
-Version:	1.9
+Version:	1.10
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
-# Source0-md5:	74f71a2f94c60653a3de07949a319b3b
+# Source0-md5:	7ead8c4a0684aa10f3b010ac66a0f3d2
 Patch0:		%{name}-noarch.patch
 URL:		http://rpmorphan.sourceforge.net/
 BuildRequires:	rpm-perlprov
