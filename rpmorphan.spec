@@ -69,7 +69,7 @@ Pomaga on usuwać nie używane pakiety, np.:
 - kiedy chcemy usunąć pakiety po jakichś testach.
 
 Dostarcza dodatkowo narzędzia:
-- rpmusage - wyświetla
+- rpmusage - wyświetla datę ostatniego użycia pakietu
 - rpmdep - wyświetla pełne zależności zainstalowanego pakietu
 - rpmduplicates - wyszukuje programy zainstalowane w kilku wersjach
 
