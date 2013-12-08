@@ -1,5 +1,14 @@
 --- rpmorphan-1.8/Makefile~	2010-04-30 15:11:55.000000000 +0200
 +++ rpmorphan-1.8/Makefile	2010-11-14 11:06:32.686032004 +0100
+@@ -8,7 +8,7 @@
+ VERSION=$(shell grep Version rpmorphan.lsm | awk '{print $$2}')
+ 
+ BINDIR = $(DESTDIR)/usr/bin
+-LIBDIR = $(DESTDIR)/usr/lib/rpmorphan/
++LIBDIR = $(DESTDIR)/usr/share/rpmorphan/
+ LOGETC = $(DESTDIR)/etc/
+ LOGROT = $(LOGETC)/logrotate.d/
+ MANDIR = $(DESTDIR)/usr/share/man
 @@ -19,7 +19,7 @@
  # for keep file 
  DATADIR=$(DESTDIR)/var/lib/rpmorphan
@@ -13,10 +22,54 @@
 +++ rpmorphan-1.8/rpmorphan.pl	2010-11-14 11:06:06.482032004 +0100
 @@ -37,7 +37,7 @@
  
- # translations
- use lib q{.};                    # for tests
+ # library
+ ## no critic (ProhibitNoisyQuotes)
 -use lib '/usr/lib/rpmorphan';    # for prod
 +use lib '/usr/share/rpmorphan';    # for prod
- my $lang = $ENV{'LANG'};
- my $locale_dir;
- if ( $lang =~ m/fr_FR/ ) {
+ use lib q{.};                    # for tests
+ ## no critic (RequireBarewordIncludes)
+ require 'rpmorphan-lib.pl'
+--- rpmorphan-1.13/rpmdep.pl~	2013-12-06 15:44:21.000000000 +0100
++++ rpmorphan-1.13/rpmdep.pl	2013-12-08 22:47:30.521794647 +0100
+@@ -29,7 +29,7 @@
+ 
+ # library
+ ## no critic (ProhibitNoisyQuotes)
+-use lib '/usr/lib/rpmorphan/';
++use lib '/usr/share/rpmorphan/';
+ use lib '.';
+ ## no critic (RequireBarewordIncludes)
+ require 'rpmorphan-lib.pl'
+--- rpmorphan-1.13/rpmduplicates.pl~	2013-12-06 15:44:21.000000000 +0100
++++ rpmorphan-1.13/rpmduplicates.pl	2013-12-08 22:47:40.988461238 +0100
+@@ -28,7 +28,7 @@
+ 
+ # library
+ ## no critic (ProhibitNoisyQuotes)
+-use lib '/usr/lib/rpmorphan/';
++use lib '/usr/share/rpmorphan/';
+ use lib '.';
+ ## no critic (RequireBarewordIncludes)
+ require 'rpmorphan-lib.pl'
+--- rpmorphan-1.13/rpmextra.pl~	2013-12-06 15:44:21.000000000 +0100
++++ rpmorphan-1.13/rpmextra.pl	2013-12-08 22:47:50.961794499 +0100
+@@ -30,7 +30,7 @@
+ 
+ # library
+ ## no critic (ProhibitNoisyQuotes)
+-use lib '/usr/lib/rpmorphan/';
++use lib '/usr/share/rpmorphan/';
+ use lib '.';
+ ## no critic (RequireBarewordIncludes)
+ require 'rpmorphan-lib.pl'
+--- rpmorphan-1.13/rpmusage.pl~	2013-12-06 15:44:21.000000000 +0100
++++ rpmorphan-1.13/rpmusage.pl	2013-12-08 22:48:07.715127711 +0100
+@@ -27,7 +27,7 @@
+ 
+ # library
+ ## no critic (ProhibitNoisyQuotes)
+-use lib '/usr/lib/rpmorphan/';
++use lib '/usr/share/rpmorphan/';
+ use lib '.';
+ ## no critic (RequireBarewordIncludes)
+ require 'rpmorphan-lib.pl'
