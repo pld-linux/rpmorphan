@@ -15,7 +15,7 @@ Summary(fr.UTF-8):	rpmorphan liste les packages rpm orphelins
 Summary(pl.UTF-8):	rpmorphan - wyświetlanie listy osieroconych pakietów
 Name:		rpmorphan
 Version:	1.13
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
@@ -23,6 +23,7 @@ Source0:	http://downloads.sourceforge.net/rpmorphan/%{name}-%{version}.tar.gz
 Patch0:		%{name}-noarch.patch
 URL:		http://rpmorphan.sourceforge.net/
 BuildRequires:	rpm-perlprov
+Requires:	perl-Encode
 Suggests:	perl-Curses-UI
 Suggests:	perl-Tk
 BuildArch:	noarch
@@ -79,11 +80,10 @@ Dostarcza dodatkowo narzędzia:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install rpmorphanrc.sample $RPM_BUILD_ROOT%{_sysconfdir}/rpmorphanrc
+cp -p rpmorphanrc.sample $RPM_BUILD_ROOT%{_sysconfdir}/rpmorphanrc
 touch $RPM_BUILD_ROOT/var/log/%{name}.log
 
 %clean
