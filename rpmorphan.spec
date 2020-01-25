@@ -9,7 +9,6 @@
 #   fam-libs-2.7.0-7.i686
 # - rpmdeps doesn't support provides, it shows them as missing
 #   "WARNING can not find who provide XXX" where XXX is not installed provide
-%include	/usr/lib/rpm/macros.perl
 Summary:	rpmorphan - list the orphaned rpm packages
 Summary(fr.UTF-8):	rpmorphan liste les packages rpm orphelins
 Summary(pl.UTF-8):	rpmorphan - wyświetlanie listy osieroconych pakietów
